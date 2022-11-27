@@ -1,0 +1,26 @@
+# Ignore everything:
+/*
+
+# ignore log files and databases
+*.log
+*.sql
+*.sqlite
+
+# ignore node dependency directories
+node_modules/
+
+# ignore wp-content; certains folders are subsquently negated/excluded
+app/*
+app/public/*
+
+# exclusions
+!.gitignore
+!gulpfile.js
+!package.json
+!package-lock.json
+!.prettierrc.json
+!.eslintrc.json
+!app/
+!app/public/
+!app/public/wp-content/
+!app/public/wp-content/**
