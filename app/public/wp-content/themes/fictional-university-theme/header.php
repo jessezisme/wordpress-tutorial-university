@@ -31,8 +31,8 @@
                         <li class="<?php echo setActiveLinkClass('about-us') ?>">
                             <a href="<?php echo site_url('/about-us') ?>">About Us</a>
                         </li>
-                        <li class="<?php echo setActiveLinkClass('programs') ?>">
-                            <a href="<?php echo site_url('/programs') ?>">Programs</a>
+                        <li class="<?php if (get_post_type() == 'program') echo 'current-menu-item' ?>">
+                            <a href="<?php echo get_post_type_archive_link('program') ?>">Programs</a>
                         </li>
                         <li class="<?php if (get_post_type() == 'event' || is_page('past-events')) echo 'current-menu-item' ?>">
                             <a href="<?php echo get_post_type_archive_link('event'); ?>">Events</a>
