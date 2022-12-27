@@ -1,14 +1,11 @@
 <?php get_header() ?>
 
-<div class="page-banner">
-    <div class="page-banner__bg-image" style="background-image: url(<?php echo get_theme_file_uri('/images/ocean.jpg') ?>)"></div>
-    <div class="page-banner__content container container--narrow">
-        <h1 class="page-banner__title"><?php echo the_title() ?> </h1>
-        <div class="page-banner__intro">
-            <p>TODO: REPLACE ME LATER</p>
-        </div>
-    </div>
-</div>
+<?php
+while (have_posts()) {
+    the_post();
+    pageBanner();
+}
+?>
 
 <div class="container container--narrow page-section">
 
@@ -25,29 +22,29 @@
     <?php }
     ?>
 
-    <?php 
-        $childPages = get_pages(array(
-            'child_of' => get_the_ID()
-        )); 
+    <?php
+    $childPages = get_pages(array(
+        'child_of' => get_the_ID()
+    ));
 
-        if ($theParent ||  $childPages) {
+    if ($theParent ||  $childPages) {
     ?>
-    <div class="page-links">
-        <h2 class="page-links__title"><a href="<? echo get_permalink($theParent) ?>"><? echo get_the_title($theParent) ?></a></h2>
-        <ul class="min-list">
-            <?php
-            wp_list_pages(array(
-                'title_li' => NULL,
-                'child_of' => $theParent ? $theParent : get_the_ID(), 
-                'sort_column' => 'menu_order'
+        <div class="page-links">
+            <h2 class="page-links__title"><a href="<? echo get_permalink($theParent) ?>"><? echo get_the_title($theParent) ?></a></h2>
+            <ul class="min-list">
+                <?php
+                wp_list_pages(array(
+                    'title_li' => NULL,
+                    'child_of' => $theParent ? $theParent : get_the_ID(),
+                    'sort_column' => 'menu_order'
 
-            ))
-            ?>
-            <!-- <li class="current_page_item"><a href="#">Our History</a></li>
+                ))
+                ?>
+                <!-- <li class="current_page_item"><a href="#">Our History</a></li>
             <li><a href="#">Our Goals</a></li> -->
-        </ul>
-    </div>
-    <? } ?> 
+            </ul>
+        </div>
+    <? } ?>
 
     <div class="generic-content">
         <?php the_content() ?>

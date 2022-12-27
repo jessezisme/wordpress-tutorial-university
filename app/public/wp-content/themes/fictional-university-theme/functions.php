@@ -1,5 +1,23 @@
 <?php
 
+function pageBanner($args = NULL)
+{
+    $customBackgroundImage = get_field('page_banner_background_image');
+    $getBackgroundImage = $customBackgroundImage ? $customBackgroundImage['sizes']['pageBanner'] : get_template_directory_uri() . '/images/ocean.jpg';
+    $getTitle = isset($args['title']) ? $args['title'] : get_the_title();
+    $getSubtitle = isset($args['subtitle']) ? $args['subtitle'] : (get_field('page_banner_subtitle') ?: '');
+?>
+    <div class="page-banner">
+        <div class="page-banner__bg-image" style="background-image: url(<?php echo $getBackgroundImage; ?>)"></div>
+        <div class="page-banner__content container container--narrow">
+            <h1 class="page-banner__title"><?php echo $getTitle; ?> </h1>
+            <div class="page-banner__intro">
+                <p> <?php echo $getSubtitle; ?></p>
+            </div>
+        </div>
+    </div>
+<?php }
+
 function university_files()
 {
     wp_enqueue_style('university_main_styles', get_theme_file_uri('/build/style-index.css'));
