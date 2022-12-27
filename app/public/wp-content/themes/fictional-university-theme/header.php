@@ -37,8 +37,8 @@
                         <li class="<?php if (get_post_type() == 'event' || is_page('past-events')) echo 'current-menu-item' ?>">
                             <a href="<?php echo get_post_type_archive_link('event'); ?>">Events</a>
                         </li>
-                        <li class="<?php echo setActiveLinkClass('campuses') ?>">
-                            <a href="<?php echo site_url('/campuses') ?>">Campuses</a>
+                        <li class="<?php if (get_post_type() == 'campus') echo 'current-menu-item' ?>">
+                            <a href="<?php echo get_post_type_archive_link('campus'); ?>">Campuses</a>
                         </li>
                         <li <?php
                             if (get_post_type() == 'post') {
