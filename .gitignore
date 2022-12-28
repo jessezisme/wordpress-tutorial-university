@@ -15,6 +15,7 @@ node_modules/
 # ignore wp-content; certains folders are subsquently negated/excluded
 app/*
 app/public/*
+app/public/wp-content/themes/fictional-university-theme/build/*
 
 # exclusions
 !.gitignore
