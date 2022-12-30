@@ -25,7 +25,7 @@
                             $isCurrentPage = is_page($linkPath);
                             $isChildPage = (get_page_by_path($linkPath) && wp_get_post_parent_id(get_the_ID()) == get_page_by_path($linkPath)->ID);
                             $isActive = $isCurrentPage || $isChildPage;
-                            return $isActive ? "current-menu-item" : "fuck";
+                            return $isActive ? "current-menu-item" : '';
                         }
                         ?>
                         <li class="<?php echo setActiveLinkClass('about-us') ?>">
@@ -50,9 +50,20 @@
                     </ul>
                 </nav>
                 <div class="site-header__util">
-                    <a href="#" class="btn btn--small btn--orange float-left push-right">Login</a>
-                    <a href="#" class="btn btn--small btn--dark-orange float-left">Sign Up</a>
-                    <a href="<?php esc_url(site_url('/search')); ?>" class="search-trigger js-search-trigger"><i class="fa fa-search" aria-hidden="true"></i></a>
+                    <?php if (is_user_logged_in()) {
+                    ?>
+                        <a href="<?php echo wp_logout_url(); ?>" class="btn btn--small btn--dark-orange float-left btn--with-photo">
+                            <span class="site-header__avatar"><?php echo get_avatar(get_current_user_id(), 60); ?></span>
+                            <span class="btn__text">Log Out</span>
+                        </a>
+
+                    <?php } else {
+                    ?>
+                        <a href="<?php echo esc_url(wp_login_url()); ?>" class="btn btn--small btn--orange float-left push-right">Login</a>
+                        <a href="<?php echo esc_url(wp_registration_url()); ?>" class="btn btn--small btn--dark-orange float-left">Sign Up</a>
+                    <?php }
+                    ?>
+                    <a href="<?php echo esc_url(site_url('/search')); ?>" class="search-trigger js-search-trigger"><i class="fa fa-search" aria-hidden="true"></i></a>
                 </div>
             </div>
         </div>
