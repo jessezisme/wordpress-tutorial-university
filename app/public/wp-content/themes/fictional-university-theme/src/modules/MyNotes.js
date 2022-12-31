@@ -45,6 +45,10 @@ class myNotes {
             success: (response) => {
                 console.log('Delete Success', response);
                 $noteParentEl.slideUp();
+
+                if (response.userNoteCount < 5) {
+                    $('.note-limit-message').removeClass('active');
+                }
             },
             error: (response) => {
                 console.error('Delete Error', response);
@@ -102,6 +106,9 @@ class myNotes {
                 `).prependTo('#my-notes').hide().slideDown();
             },
             error: (response) => {
+                if (response.responseText && response.responseText.search(/limit/i) != -1) {
+                    $('.note-limit-message').text(response.responseText).addClass('active');
+                }
                 console.error('Create Error', response);
             }
         })
